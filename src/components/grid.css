@@ -1,0 +1,113 @@
+.bingoGrid{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    grid-auto-rows: minmax(100px, auto);
+    max-width: 700px;
+    margin: 3rem auto;
+}
+
+.bingoGrid div{
+    background-color: #444;
+    padding: 10px;
+    display: flex;
+    font-size: 18px;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+    transition: transform .2s;
+}
+@media only screen and (max-width: 800px) {
+    .bingoGrid{
+        gap: 5px;
+        grid-auto-rows: minmax(100px, auto);
+    }
+    
+    .bingoGrid div{
+        padding: 10px 5px;
+        font-size: 16px;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .bingoGrid{
+        grid-template-columns: repeat(5, 19.5%);
+        gap: 2px;
+        grid-auto-rows: minmax(auto, auto);
+        width: 100%;
+    }
+    
+    .bingoGrid div{
+        padding: 10px 0;
+        font-size: 12px;
+    }
+}
+.bingoGrid div:hover{
+    transform: scale(0.95);
+}
+.bingoGrid div:nth-child(13){
+    border-radius: 50%;
+}
+.bingoGrid div:nth-child(13):hover{
+    transform: scale(1);
+}
+.bingoGrid div:nth-child(1){
+    border-radius: 15px 0 0 0;
+}
+.bingoGrid div:nth-child(5){
+    border-radius: 0 15px 0 0;
+}
+.bingoGrid div:nth-child(21){
+    border-radius: 0 0 0 15px;
+}
+.bingoGrid div:nth-child(25){
+    border-radius: 0 0 15px 0;
+}
+
+
+
+.bg {
+    animation:slide 3s ease-in-out infinite alternate;
+    background-image: linear-gradient(-60deg, rgb(6, 109, 95) 50%, rgb(0, 107, 179) 50%);
+    bottom:0;
+    left:-50%;
+    opacity:.5;
+    position:fixed;
+    right:-50%;
+    top:0;
+    z-index:-1;
+  }
+  
+  .bg2 {
+    animation-direction:alternate-reverse;
+    animation-duration:4s;
+  }
+  
+  .bg3 {
+    animation-duration:5s;
+  }
+  
+  .content {
+    background-color:rgba(255,255,255,.8);
+    border-radius:.25em;
+    box-shadow:0 0 .25em rgba(0,0,0,.25);
+    box-sizing:border-box;
+    left:50%;
+    padding:10vmin;
+    position:fixed;
+    text-align:center;
+    top:50%;
+    transform:translate(-50%, -50%);
+  }
+  
+  h1 {
+    font-family:monospace;
+  }
+  
+  @keyframes slide {
+    0% {
+      transform:translateX(-25%);
+    }
+    100% {
+      transform:translateX(25%);
+    }
+  }

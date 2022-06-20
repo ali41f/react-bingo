@@ -1,38 +1,70 @@
-.App {
-  text-align: center;
+:root {
+  --color-1: #fed23f;
+  --color-2: #6298dd;
+  --color-3: #22b19e;
+  --color-4: #ee6969;
+  --color-5: #fed23f;
+  --angle: 0deg;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+body {
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  background: #000;
+  color: #d5d5d5;
 }
-
-.App-link {
-  color: #61dafb;
+h1 {
+  color: #fff;
+  text-align: center;
+  font-family: Roboto,"Helvetica Neue",Arial,sans-serif;
+  font-size: 6.5vw;
+  font-weight: 900;
+  line-height: 6vw;
+  max-width: 600px;
+  margin: 3rem auto;
+  text-transform: uppercase;
+  
+  background: linear-gradient(
+    var(--angle),
+    var(--color-1) 19%,
+    transparent 19%,
+    transparent 20%,
+    var(--color-2) 20%,
+    var(--color-2) 39%,
+    transparent 39%,
+    transparent 40%,
+    var(--color-3) 40%,
+    var(--color-3) 59%,
+    transparent 59%,
+    transparent 60%,
+    var(--color-4) 60%,
+    var(--color-4) 79%,
+    transparent 79%,
+    transparent 80%,
+    var(--color-5) 80%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent; 
+  animation: 10s rotate linear infinite;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+@media only screen and (max-width: 600px) {
+  h1{
+    font-size: 9.5vw;
+    line-height: 10vw;
   }
+}
+@media only screen and (min-width: 1900px) {
+  h1{
+    max-width: 100%;
+  }
+}
+@keyframes rotate {
   to {
-    transform: rotate(360deg);
+    --angle: 360deg;
   }
+}
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
