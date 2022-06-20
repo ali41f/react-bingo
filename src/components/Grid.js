@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { GridText } from '../data'
 import Cell from './Cell'
 import "./grid.css"
@@ -18,11 +18,39 @@ const Grid = ({isBingo, setIsBingo}) => {
         setGridData(GridText.sort(() => 0.5 - Math.random()))
     },[]);
 
-    useEffect(() => {
-        checkForBingo()
+
+    const isIndexPresent = useCallback((i) => {
+        return selectedCells.some((cellData) => cellData.cellIndex === i)
+    },[selectedCells])
+    
+    const checkDiagonals = useCallback(() => {
+        if(isIndexPresent(0) && isIndexPresent(6) && isIndexPresent(18) && isIndexPresent(24)){
+            return true;
+        }
+        if(isIndexPresent(4) && isIndexPresent(8) && isIndexPresent(16) && isIndexPresent(20)){
+            return true;
+        }
+        return false;
+    }, [isIndexPresent])
+    
+
+    const occuranceRowColVal = useCallback((value, isRow) => {
+        let counter = 0;
+        selectedCells.forEach((cellData) => {
+            if(isRow){
+                if(cellData.row === value) counter++
+            }else{
+                if(cellData.column === value) counter++
+            }
+        })
+        return counter;
     },[selectedCells])
 
-    const checkForBingo = () => {
+    const bingo = useCallback(() => {
+        setIsBingo(true)
+    },[setIsBingo])
+
+    const checkForBingo = useCallback(() => {
         let bingoCheck = false;
         selectedCells.forEach((cellData) => {
             if(occuranceRowColVal(cellData.row, true) >=5 || occuranceRowColVal(cellData.column, false) >=5){
@@ -35,38 +63,12 @@ const Grid = ({isBingo, setIsBingo}) => {
             bingoCheck = true;
         }
         if(!bingoCheck) setIsBingo(false)
-    }
+    }, [selectedCells, bingo, checkDiagonals, occuranceRowColVal, setIsBingo]);
 
-    
-    const checkDiagonals = () => {
-        if(isIndexPresent(0) && isIndexPresent(6) && isIndexPresent(18) && isIndexPresent(24)){
-            return true;
-        }
-        if(isIndexPresent(4) && isIndexPresent(8) && isIndexPresent(16) && isIndexPresent(20)){
-            return true;
-        }
-        return false;
-    }
-    
-    const isIndexPresent = (i) => {
-        return selectedCells.some((cellData) => cellData.cellIndex === i)
-    }
 
-    const occuranceRowColVal = (value, isRow) => {
-        let counter = 0;
-        selectedCells.forEach((cellData) => {
-            if(isRow){
-                if(cellData.row === value) counter++
-            }else{
-                if(cellData.column === value) counter++
-            }
-        })
-        return counter;
-    }
-
-    const bingo = () => {
-        setIsBingo(true)
-    }
+    useEffect(() => {
+        checkForBingo()
+    },[selectedCells, checkForBingo])
 
     const clickHandler = (index) => {
         const rowNum = Math.floor(index/5);
