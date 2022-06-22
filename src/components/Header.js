@@ -1,11 +1,15 @@
 import React from 'react'
 
-const Header = ({isBingo, bingoCount}) => {
+const Header = ({bingoCount}) => {
+
+    const bingoText = () => {
+        const text = bingoCount > 1 ? " Bingos" : " Bingo"
+        return text;
+    }
+
     return (
         <h1>
-        {
-            !isBingo ? (<>BINGO BY <br /> ALI REHMAN</>) : (<>Bingooooo!<br /> {bingoCount} times</>)
-        }
+        <>BINGO GAME <br /> { !bingoCount ? "ALI REHMAN" : bingoCount + bingoText() }</>
         </h1>
     )
 }

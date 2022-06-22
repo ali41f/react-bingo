@@ -50,6 +50,16 @@ const Grid = ({isBingo, setIsBingo, bingoCount, setBingoCount}) => {
         setIsBingo(true)
     },[setIsBingo])
 
+    const resetBoard = () => {
+        setSelectedCells([
+            {
+                cellIndex: 12,
+                row: 2,
+                column: 2
+            }
+        ])
+    }
+
     const checkForBingo = useCallback(() => {
         let bingoCheck = false;
         selectedCells.forEach((cellData) => {
@@ -66,6 +76,7 @@ const Grid = ({isBingo, setIsBingo, bingoCount, setBingoCount}) => {
             setIsBingo(false)
         }else{
             setBingoCount(prevCount => prevCount+1)
+            setTimeout(resetBoard, 1000);
         }
     }, [selectedCells, bingo, checkDiagonals, occuranceRowColVal, setIsBingo, setBingoCount]);
 
@@ -110,7 +121,7 @@ const Grid = ({isBingo, setIsBingo, bingoCount, setBingoCount}) => {
                 })
             }
             {
-                isBingo && (
+                bingoCount && (
                     <>
                     <div className="bg"></div>
                     <div className="bg bg2"></div>

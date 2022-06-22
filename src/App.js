@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header isBingo={isBingo} bingoCount={bingoCount} />
+      <Header bingoCount={bingoCount} />
       <Grid isBingo={isBingo} setIsBingo={setIsBingo} bingoCount={bingoCount} setBingoCount={setBingoCount} />
     </div>
   );
