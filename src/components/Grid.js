@@ -3,7 +3,7 @@ import { GridText } from '../data'
 import Cell from './Cell'
 import "./grid.css"
 
-const Grid = ({isBingo, setIsBingo}) => {
+const Grid = ({isBingo, setIsBingo, bingoCount, setBingoCount}) => {
 
     const [gridData, setGridData] = useState([]);
     const [selectedCells, setSelectedCells] = useState([
@@ -62,8 +62,12 @@ const Grid = ({isBingo, setIsBingo}) => {
             bingo()
             bingoCheck = true;
         }
-        if(!bingoCheck) setIsBingo(false)
-    }, [selectedCells, bingo, checkDiagonals, occuranceRowColVal, setIsBingo]);
+        if(!bingoCheck){
+            setIsBingo(false)
+        }else{
+            setBingoCount(prevCount => prevCount+1)
+        }
+    }, [selectedCells, bingo, checkDiagonals, occuranceRowColVal, setIsBingo, setBingoCount]);
 
 
     useEffect(() => {

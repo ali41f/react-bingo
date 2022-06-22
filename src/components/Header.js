@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Header = ({isBingo}) => {
+const Header = ({isBingo, bingoCount}) => {
     return (
         <h1>
         {
-            !isBingo ? (<>BINGO BY <br /> ALI REHMAN</>) : (<>Bingooooo!<br /> You won</>)
+            !isBingo ? (<>BINGO BY <br /> ALI REHMAN</>) : (<>Bingooooo!<br /> {bingoCount} times</>)
         }
         </h1>
     )

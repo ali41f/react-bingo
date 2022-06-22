@@ -6,11 +6,12 @@ import './App.css';
 function App() {
 
   const [isBingo, setIsBingo] = useState(false);
+  const [bingoCount, setBingoCount] = useState(0);
 
   return (
     <div className="App">
-      <Header isBingo={isBingo} />
-      <Grid isBingo={isBingo} setIsBingo={setIsBingo} />
+      <Header isBingo={isBingo} bingoCount={bingoCount} />
+      <Grid isBingo={isBingo} setIsBingo={setIsBingo} bingoCount={bingoCount} setBingoCount={setBingoCount} />
     </div>
   );
 }
